@@ -11,9 +11,9 @@ export default function Header() {
         <h1>My Shopping List</h1>
         <div className={styles.count_box}>
           <div>
-            Total items: <span>{items.length}</span>
+            🛒 <span>{items.length}</span>
           </div>
-          <button onClick={handleClearAll}>Clear Cart</button>
+          <button onClick={handleClearAll}>Clear Cart </button>
         </div>
       </header>
     </>
