@@ -11,8 +11,6 @@ const clearAllItems = [];
 
 // reducer function
 const reducer = (state, action) => {
-  console.log('state', state);
-  console.log('action', action);
   switch (action.type) {
     case 'ADD_ITEM': {
       // return our updated state with the newly added shopping item at the beginning of our list
@@ -20,7 +18,6 @@ const reducer = (state, action) => {
         { id: state.length, text: action.payload.text, done: false },
         ...state,
       ];
-      console.log('newState', newState);
       return newState;
     }
     case 'DELETE_ITEM':

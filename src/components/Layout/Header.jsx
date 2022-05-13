@@ -13,7 +13,13 @@ export default function Header() {
           <div>
             🛒 <span>{items.length}</span>
           </div>
-          <button onClick={handleClearAll}>Clear Cart </button>
+          <button
+            type="submit"
+            aria-label="clear cart"
+            onClick={handleClearAll}
+          >
+            Clear Cart
+          </button>
         </div>
       </header>
     </>
