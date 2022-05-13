@@ -53,6 +53,7 @@ it('should be able to delete an item on the list', () => {
   screen.getByText(/Corn/i);
   screen.getByText('Steak 🥩');
   screen.getByText('Ice Cream 🍦');
+
   //find delete button and click
   const deleteButton = screen.getByLabelText('Delete Steak 🥩');
   userEvent.click(deleteButton);
@@ -96,8 +97,7 @@ it('should be able to mark a shopping item as done with strike through on text',
 
   //find checkbox in front of corn
   const checkCorn = screen.getByTestId(0);
-
+  //check checkbox
   userEvent.click(checkCorn);
-
   expect(corn).toHaveStyle({ textDecoration: 'line-through' });
 });

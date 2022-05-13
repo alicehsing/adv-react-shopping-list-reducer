@@ -18,7 +18,6 @@ export default function List() {
   return (
     <>
       <div className={styles.shopping_list}>
-        {/* <h1>List of To-Buy Items</h1> */}
         <form onSubmit={handleSubmit}>
           <input
             type="text"
