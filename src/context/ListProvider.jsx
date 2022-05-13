@@ -7,6 +7,8 @@ const initialItems = [
   { id: 2, text: 'Ice Cream 🍦', done: false },
 ];
 
+const clearAllItems = [];
+
 // reducer function
 const reducer = (state, action) => {
   console.log('state', state);
@@ -39,6 +41,8 @@ const reducer = (state, action) => {
         }
         return item;
       });
+    case 'CLEAR_FORM':
+      return clearAllItems;
     default:
       throw new Error(`Action type ${action.type} is not supported`);
   }
@@ -67,9 +71,20 @@ export const ListProvider = ({ children }) => {
     dispatch({ type: 'UPDATE_ITEM', payload: { item } });
   };
 
+  // Clear all items from list
+  const handleClearAll = () => {
+    dispatch({ type: 'CLEAR_FORM' });
+  };
+
   return (
     <ItemContext.Provider
-      value={{ items, handleAddItem, handleDeleteItem, handleUpdateItem }}
+      value={{
+        items,
+        handleAddItem,
+        handleDeleteItem,
+        handleUpdateItem,
+        handleClearAll,
+      }}
     >
       {children}
     </ItemContext.Provider>
@@ -78,7 +93,7 @@ export const ListProvider = ({ children }) => {
 
 export const useItems = () => {
   const context = useContext(ItemContext);
-  // context = { items, handleAddItem, handleDeleteItem, handleUpdateItem }
+  // context = { items, handleAddItem, handleDeleteItem, handleUpdateItem, handleClearAll }
   if (context === undefined)
     throw new Error('useItems must be called from within a ListProvider');
 
