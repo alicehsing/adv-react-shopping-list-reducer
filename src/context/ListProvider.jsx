@@ -31,12 +31,12 @@ const reducer = (state, action) => {
       // Return a new array with the updated item
       return state.map((item) => {
         if (item.id === action.payload.item.id) {
-          const { done, text } = action.payload.item;
+          const { text, done } = action.payload.item;
 
           return {
             ...item,
-            done,
             text,
+            done,
           };
         }
         return item;
