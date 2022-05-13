@@ -49,14 +49,18 @@ export default function Item({ item, clickUpdate, clickDelete }) {
   return (
     <>
       <div className={styles.item}>
-        <input
-          type="checkbox"
-          checked={item.done}
-          onChange={(e) => {
-            clickUpdate({ ...item, done: e.target.checked });
-          }}
-          className={styles.checkbox}
-        />
+        <label>
+          <input
+            type="checkbox"
+            checked={item.done}
+            data-testid={item.id}
+            aria-label={item.text}
+            onChange={(e) => {
+              clickUpdate({ ...item, done: e.target.checked });
+            }}
+            className={styles.checkbox}
+          />
+        </label>
         {content}
         <button
           type="button"

@@ -11,7 +11,7 @@ export default function Header() {
         <h1>My Shopping List</h1>
         <div className={styles.count_box}>
           <div>
-            🛒 <span>{items.length}</span>
+            🛒 <span aria-label="count">{items.length}</span>
           </div>
           <button
             type="submit"

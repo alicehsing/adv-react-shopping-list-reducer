@@ -1,9 +1,4 @@
-import {
-  render,
-  screen,
-  waitFor,
-  waitForElementToBeRemoved,
-} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from './App';
 
@@ -11,10 +6,13 @@ beforeEach(() => {
   render(<App />);
 });
 
-it('component test - renders a header consisted of a heading element and a button as well as list of pre-set shopping items ', () => {
+it('component test - renders a header consisted of a heading element, a reset button, item count as well as a list of pre-set shopping items ', () => {
   screen.getByRole('heading', {
     name: 'My Shopping List',
   });
+
+  const count = screen.getByLabelText('count');
+  expect(count).toHaveTextContent('3');
 
   screen.getByLabelText('clear cart');
   screen.getByText(/Corn/i);
@@ -62,9 +60,44 @@ it('should be able to delete an item on the list', () => {
   //render 2 items on the list
   screen.getByText('Corn 🌽');
   screen.getByText('Ice Cream 🍦');
-  screen.debug();
 });
 
-// it('should count added items and reset cart to 0');
+it('header component should keep track of the total count of the shopping list', () => {
+  //on load count = 3
+  let count = screen.getByLabelText('count');
+  expect(count).toHaveTextContent('3');
 
-// it('should be able to mark a shopping item as done with strike through on text', () => {});
+  //deletes an existing item from the list
+  const deleteSteak = screen.getByLabelText('Delete Steak 🥩');
+  userEvent.click(deleteSteak);
+
+  //count updated to 2
+  expect(count).toHaveTextContent('2');
+});
+
+it('header component has a button that resets the shopping list', () => {
+  //on load count = 3
+  let count = screen.getByLabelText('count');
+  expect(count).toHaveTextContent('3');
+
+  //find reset button
+  const resetButton = screen.getByRole('button', { name: /Clear Cart/i });
+  userEvent.click(resetButton);
+
+  //update count = 0
+  expect(count).toHaveTextContent('0');
+});
+
+it('should be able to mark a shopping item as done with strike through on text', () => {
+  //on load, render the 3 initial items on the list
+  const corn = screen.getByText('Corn 🌽');
+  screen.getByText('Steak 🥩');
+  screen.getByText('Ice Cream 🍦');
+
+  //find checkbox in front of corn
+  const checkCorn = screen.getByTestId(0);
+
+  userEvent.click(checkCorn);
+
+  expect(corn).toHaveStyle({ textDecoration: 'line-through' });
+});
