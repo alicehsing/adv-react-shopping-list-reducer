@@ -1,41 +1,31 @@
-import { useReducer, useState } from 'react';
+import { useState } from 'react';
+import { useItems } from '../context/ListProvider';
 
-// set initial state
-const initialItems = [
-  { id: 0, text: 'Corn 🌽', done: false },
-  { id: 1, text: 'Steak 🥩', done: false },
-  { id: 2, text: 'Ice Cream 🍦', done: false },
-];
-
-// reducer function
-const reducer = (state, action) => {
-  console.log('state', state);
-  console.log('action', action);
-  switch (action.type) {
-    case 'ADD_TODO': {
-      const newState = [
-        { id: state.length, text: action.payload.text, done: false },
-        ...state,
-      ];
-      console.log('newState', newState);
-      return newState;
-    }
-    default:
-      throw new Error(`Action type ${action.type} is not supported`);
-  }
-};
+// const initialItems = [
+//   { id: 0, text: 'Corn 🌽', done: false },
+//   { id: 1, text: 'Steak 🥩', done: false },
+//   { id: 2, text: 'Ice Cream 🍦', done: false },
+// ];
 
 export default function List() {
   // bring in useReducer hook, pass in reducer function and set initialItems state
-  const [items, dispatch] = useReducer(reducer, initialItems);
+  // const [items, dispatch] = useReducer(reducer, initialItems);
   const [newItem, setNewItem] = useState('');
+  const { items, handleAddItem, handleDeleteItem, handleUpdateItem } =
+    useItems();
 
+  // Add new item to list
   const handleSubmit = (event) => {
     event.preventDefault();
-    // dispatch becomes the "action" in reducer.
-    dispatch({ type: 'ADD_TODO', payload: { text: newItem } });
+    handleAddItem(newItem);
     setNewItem('');
   };
+
+  // // Delete an item from list
+  // const handleDeleteItem = (id) => {
+  //   console.log(`Delete item ${id}`);
+  //   dispatch({ type: 'DELETE_ITEM', payload: { id } });
+  // };
 
   return (
     <>
@@ -48,7 +38,7 @@ export default function List() {
           value={newItem}
           onChange={(event) => setNewItem(event.target.value)}
         />
-        <button>Add Item</button>
+        <button onClick={handleAddItem}>Add Item</button>
       </form>
       <section>
         <p>Display list below</p>
@@ -57,7 +47,13 @@ export default function List() {
             <li key={item.id}>
               <p>{item.text}</p>
               <button type="button">Edit</button>
-              <button type="button">Delete</button>
+              <button
+                type="button"
+                onClick={handleDeleteItem}
+                aria-label={`Delete ${item.text}`}
+              >
+                Delete
+              </button>
             </li>
           ))}
         </ul>
