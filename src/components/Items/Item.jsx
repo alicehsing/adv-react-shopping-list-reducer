@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import styles from '../../App.css';
 
 export default function Item({ item, clickUpdate, clickDelete }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -38,6 +39,7 @@ export default function Item({ item, clickUpdate, clickDelete }) {
           type="button"
           onClick={() => setIsEditing(true)}
           aria-label={`Edit ${item.text}`}
+          className={styles.editBtn}
         >
           Edit
         </button>
@@ -46,19 +48,21 @@ export default function Item({ item, clickUpdate, clickDelete }) {
   }
   return (
     <>
-      <div>
+      <div className={styles.item}>
         <input
           type="checkbox"
           checked={item.done}
           onChange={(e) => {
             clickUpdate({ ...item, done: e.target.checked });
           }}
+          className={styles.checkbox}
         />
         {content}
         <button
           type="button"
           onClick={() => clickDelete(item.id)}
           aria-label={`Delete ${item.text}`}
+          className={styles.deleteBtn}
         >
           Delete
         </button>

@@ -11,6 +11,7 @@ body,
   width: 100%;
   color: white;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
 }
 
 header {
@@ -19,7 +20,10 @@ header {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px 900px;
-  position: re;
+}
+
+header h1 {
+  margin-left: 30px;
 }
 
 header span {
@@ -41,4 +45,64 @@ header button {
   align-items: center;
   margin: 20px;
   font-size: 1.2rem;
+}
+
+.shopping_list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 150px;
+}
+
+.shopping_list button {
+  margin: 15px;
+  padding: 10px;
+}
+
+.addInput {
+  height: 60px;
+  width: 250px;
+  border-radius: 10px;
+}
+
+.addButton {
+  background-color: coral;
+  border-style: none;
+  border-radius: 5px;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px 10px;
+  align-items: center;
+  margin: 10px;
+}
+
+.editBtn {
+  background-color: plum;
+  width: 80px;
+  border-style: none;
+  border-radius: 5px;
+  color: aliceblue;
+  font-size: 20px;
+}
+
+.deleteBtn {
+  background-color: red;
+  width: 80px;
+  border-style: none;
+  border-radius: 5px;
+  color: aliceblue;
+  font-size: 20px;
+  align-items: center;
+}
+
+ul {
+  list-style: none;
+}
+
+.checkbox {
+  margin-right: 30px;
 }
