@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Item from '../components/Items/Item';
 import { useItems } from '../context/ListProvider';
 
 // const initialItems = [
@@ -45,15 +46,11 @@ export default function List() {
         <ul>
           {items.map((item) => (
             <li key={item.id}>
-              <p>{item.text}</p>
-              <button type="button">Edit</button>
-              <button
-                type="button"
-                onClick={handleDeleteItem}
-                aria-label={`Delete ${item.text}`}
-              >
-                Delete
-              </button>
+              <Item
+                item={item}
+                clickUpdate={handleUpdateItem}
+                clickDelete={handleDeleteItem}
+              />
             </li>
           ))}
         </ul>

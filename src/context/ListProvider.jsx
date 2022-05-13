@@ -23,6 +23,22 @@ const reducer = (state, action) => {
     }
     case 'DELETE_ITEM':
       return state.filter((item) => item.id !== action.payload.id);
+    case 'UPDATE_ITEM':
+      // Find the provided item
+      // Update its content
+      // Return a new array with the updated item
+      return state.map((item) => {
+        if (item.id === action.payload.item.id) {
+          const { done, text } = action.payload.item;
+
+          return {
+            ...item,
+            done,
+            text,
+          };
+        }
+        return item;
+      });
     default:
       throw new Error(`Action type ${action.type} is not supported`);
   }
