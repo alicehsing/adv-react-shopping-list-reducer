@@ -1,9 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from './App';
+import { ListProvider } from './context/ListProvider';
 
 beforeEach(() => {
-  render(<App />);
+  render(
+    <ListProvider>
+      <App />
+    </ListProvider>
+  );
 });
 
 it('component test - renders a header consisted of a heading element, a reset button, item count as well as a list of pre-set shopping items ', () => {

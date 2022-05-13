@@ -59,7 +59,6 @@ export const ListProvider = ({ children }) => {
 
   // Delete an item from list
   const handleDeleteItem = (id) => {
-    console.log(`Delete item ${id}`);
     dispatch({ type: 'DELETE_ITEM', payload: { id } });
   };
 
