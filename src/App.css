@@ -1,0 +1,111 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root,
+.App {
+  background-color: rgb(45, 34, 34);
+  height: 100%;
+  width: 100%;
+  color: white;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
+}
+
+header {
+  background-color: rgb(255, 196, 0);
+  color: black;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 900px;
+}
+
+header h1 {
+  margin-left: 30px;
+}
+
+header span {
+  background-color: black;
+  color: white;
+}
+
+header button {
+  border-style: none;
+  background-color: rgb(255, 196, 0);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1.2rem;
+  margin-left: 15px;
+}
+
+.count_box {
+  display: flex;
+  flex-direction: row;
+  justify-self: end;
+  align-items: center;
+  margin: 20px;
+  font-size: 1.2rem;
+}
+
+.shopping_list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 150px;
+}
+
+.shopping_list button {
+  margin: 15px;
+  padding: 10px;
+}
+
+.addInput {
+  height: 60px;
+  width: 250px;
+  border-radius: 10px;
+}
+
+.addButton {
+  background-color: coral;
+  border-style: none;
+  border-radius: 5px;
+  width: 80px;
+  height: 50px;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px 10px;
+  align-items: center;
+  margin: 10px;
+}
+
+.editBtn {
+  background-color: plum;
+  width: 80px;
+  border-style: none;
+  border-radius: 5px;
+  color: aliceblue;
+  font-size: 20px;
+}
+
+.deleteBtn {
+  background-color: red;
+  width: 80px;
+  border-style: none;
+  border-radius: 5px;
+  color: aliceblue;
+  font-size: 20px;
+  align-items: center;
+}
+
+ul {
+  list-style: none;
+}
+
+.checkbox {
+  margin-right: 30px;
+}
